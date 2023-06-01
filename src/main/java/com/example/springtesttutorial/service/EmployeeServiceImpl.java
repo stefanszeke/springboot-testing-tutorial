@@ -41,7 +41,7 @@ public class EmployeeServiceImpl implements EmployeeService {
   @Override
   public Employee updateEmployee(Long id, Employee updatedEmployee) {
     Employee employee = employeeRepository.findById(id)
-        .orElseThrow(() -> new EmployeeNotFoundException(String.format("Employee not found for id %s", updatedEmployee.getId())));
+        .orElseThrow(() -> new EmployeeNotFoundException(String.format("Employee not found for id %s", id)));
 
     if(updatedEmployee.getFirstName() != null) employee.setFirstName(updatedEmployee.getFirstName());
     if(updatedEmployee.getLastName() != null) employee.setLastName(updatedEmployee.getLastName());
