@@ -8,15 +8,15 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import com.example.springtesttutorial.model.Employee;
 
-// needs h2 dependency in pom.xml for this test to work
-@DataJpaTest // auto-configures an in-memory database, Spring Data JPA, and Hibernate, and
-             // scans for @Entity classes and Spring Data repositories, disables full
-             // auto-configuration and applies only configuration relevant to JPA tests
-public class EmployeeRepositoryTest {
+
+@DataJpaTest
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE) // disables the default in-memory database and lets us use the configured database
+public class EmployeeRepositoryTestPostgres {
 
   @Autowired
   private EmployeeRepository employeeRepository;
